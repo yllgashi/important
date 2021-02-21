@@ -4,118 +4,87 @@ import 'package:important/models/ToDoNote.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
 import 'package:important/utilities/temp_values.dart';
+import 'package:important/widgets/importance_buttons.dart';
+import 'package:important/widgets/todo_onlongpress_dialog.dart';
 
 class TodoList extends StatefulWidget {
+  final List<ToDoNote> _todos;
+
+  TodoList(this._todos);
+
   @override
-  _TodoList createState() => _TodoList();
+  _TodoList createState() => _TodoList(this._todos);
 }
 
 class _TodoList extends State<TodoList> {
-  List<ToDoNote> _toDoNotes = [];
-  List<ToDoNote> _doneToDoNotes = [];
+  List<ToDoNote> _todos = [];
 
+  _TodoList(this._todos);
 
   @override
   Widget build(BuildContext context) {
-    TempValues.generateNote(_toDoNotes);
-    ToDoNote o = ToDoNote('1', '2', Priority.fundamental, DateTime.now());
     return ListView.builder(
-      itemCount: _toDoNotes.length,
-      itemBuilder: (context, i) {
-      final ToDoNote item = _toDoNotes[i];
-      if (i.isOdd) return Divider();
+        itemCount: _todos.length,
+        itemBuilder: (context, i) {
+          final ToDoNote item = _todos[i];
+          if (i.isOdd) return Divider();
 
-      return Dismissible(
-        key: Key(item.caption),
-
-        onDismissed: (DismissDirection dir) {
-          setState(() => this._toDoNotes.removeAt(i));
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text(dir == DismissDirection.startToEnd
-                  ? item.caption + 'removed'
-                  : item.caption + 'done'),
-              action: SnackBarAction(
-                label: 'UNDO',
-                onPressed: () {
-                  setState(() => this._toDoNotes.insert(i, item));
-                },
+          return Dismissible(
+            key: Key(item.caption),
+            onDismissed: (DismissDirection dir) {
+              setState(() => this._todos.removeAt(i));
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(dir == DismissDirection.startToEnd
+                      ? item.caption + ' removed'
+                      : item.caption + ' is done'),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    onPressed: () {
+                      setState(() => this._todos.insert(i, item));
+                    },
+                  ),
+                ),
+              );
+            },
+            background: Container(
+              color: Colors.red,
+              child: Icon(
+                Icons.delete,
               ),
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 15),
             ),
+            secondaryBackground: Container(
+              color: Colors.green,
+              child: Icon(
+                Icons.tour,
+              ),
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.only(right: 15),
+            ),
+            child: _listItem(_todos[i]),
           );
-        },
-        background: Container(
-          color: Colors.red,
-          child: Icon(Icons.delete),
-          alignment: Alignment.centerLeft,
-        ),
-        secondaryBackground: Container(
-          color: Colors.green,
-          child: Icon(Icons.tour),
-          alignment: Alignment.centerRight,
-        ),
-        child: _listItem(_toDoNotes[i]),
-      );
-    });
+        });
   }
 
-  Widget _listItem(ToDoNote note) {
+  Widget _listItem(ToDoNote item) {
     return ListTile(
-      title: Text(note.caption),
-      subtitle: Text(note.description),
-      trailing: _importanceIcons(),
+      title: Text(item.caption),
+      subtitle: Text(item.description),
+      trailing: ImportanceIcons(item),
+      onLongPress: () {
+        showDialog(
+          context: context,
+          builder: (context) => TodoOnlongpressDialog(item),
+        );
+      },
     );
   }
 
-
-// TODO Qeta boje ne veti se nuk po bon metoda setState() pasi qe ajo e thirr metoden build
-// e ti nuk ki qetu metode build, duhet me kriju ni class te re si Stateful
-  Widget _importanceIcons() {
-    bool fundamental = true;
-    bool useful = true;
-    bool unimportant = true;
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        IconButton(
-          icon: Icon(Icons.trip_origin),
-          iconSize: 18,
-          color: unimportant ? Constants.unimportantColor : null,
-          onPressed: () {
-            setState(() {
-              fundamental = false;
-              useful = false;
-              unimportant = true;
-            });
-          },
-        ),
-        IconButton(
-          icon: Icon(Icons.trip_origin),
-          iconSize: 18,
-          color: useful ? Constants.usefulColor : null,
-          onPressed: () {
-            setState(() {
-              fundamental = false;
-              useful = true;
-              unimportant = false;
-            });
-          },
-        ),
-        IconButton(
-          icon: Icon(Icons.trip_origin),
-          iconSize: 18,
-          color: fundamental ? Constants.fundamentalColor : null,
-          onPressed: () {
-            setState(() {
-              fundamental = true;
-              useful = false;
-              unimportant = false;
-            });
-          },
-        ),
-      ],
-    );
+  void addTodo(ToDoNote item) {
+    setState(() {
+      this._todos.add(item);
+    });
   }
 }

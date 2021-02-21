@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/priority.dart';
+import 'package:important/utilities/constants.dart';
+import 'package:important/widgets/todo_list.dart';
+
+class CreateTodoDialog extends StatefulWidget {
+  final List<ToDoNote> _todos;
+
+  CreateTodoDialog(this._todos);
+
+  @override
+  _CreateTodoDialogState createState() => _CreateTodoDialogState(this._todos);
+}
+
+class _CreateTodoDialogState extends State<CreateTodoDialog> {
+  final List<ToDoNote> _todos;
+  final _todoTitleController = TextEditingController();
+  final _todoDescriptionController = TextEditingController();
+
+  _CreateTodoDialogState(this._todos);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('New todo'),
+      content: _todoForm(),
+      actions: [
+        FlatButton(
+          textColor: Constants.primaryColor,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Cancel'),
+        ),
+        FlatButton(
+          textColor: Constants.primaryColor,
+          onPressed: () {
+            ToDoNote temp = ToDoNote(this._todoTitleController.text,
+            this._todoDescriptionController.text, Priority.unimportant, DateTime.now());
+            // TODO qetu ke met qysh mja thirr metoden setState te klases ToDoList ne menyre qe te behet update ne ekran
+            // addTodo(); // kjo duhet me thirr setState() te klases _ToDoList
+            Navigator.pop(context);
+          },
+          child: Text('Create'),
+        ),
+      ],
+    );
+  }
+
+  Widget _todoForm() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextField(
+          controller: _todoTitleController,
+          maxLength: 50,
+          keyboardType: TextInputType.text,
+          style: Theme.of(context).textTheme.headline6,
+          decoration: InputDecoration(
+            icon: const Icon(Icons.bookmarks_outlined),
+            labelText: 'Title',
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+          ),
+        ),
+        Divider(height: 15),
+        TextField(
+          controller: _todoDescriptionController,
+          maxLength: 100,
+          keyboardType: TextInputType.text,
+          style: Theme.of(context).textTheme.subtitle1,
+          decoration: InputDecoration(
+            icon: const Icon(Icons.description_outlined),
+            labelText: 'Description',
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+          ),
+
+        )
+      ],
+    );
+  }
+}
