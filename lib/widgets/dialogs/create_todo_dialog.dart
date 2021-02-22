@@ -41,6 +41,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
             this._todoDescriptionController.text, Priority.unimportant, DateTime.now());
             // TODO qetu ke met qysh mja thirr metoden setState te klases ToDoList ne menyre qe te behet update ne ekran
             // addTodo(); // kjo duhet me thirr setState() te klases _ToDoList
+            Constants.addNewTodo(temp);
             Navigator.pop(context);
           },
           child: Text('Create'),

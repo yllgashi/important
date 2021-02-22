@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:important/models/ToDoNote.dart';
 import 'package:important/utilities/constants.dart';
 
-import 'create_todo_dialog.dart';
+import 'dialogs/create_todo_dialog.dart';
 
 class FloatingActionButtonAdd extends StatefulWidget {
   final List<ToDoNote> _todos;

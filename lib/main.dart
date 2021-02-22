@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:important/models/ToDoNote.dart';
 import 'package:important/utilities/constants.dart';
 import 'package:important/utilities/temp_values.dart';
-import 'package:important/widgets/create_todo_dialog.dart';
+import 'package:important/widgets/dialogs/create_todo_dialog.dart';
 import 'package:important/widgets/floating_action_button_add.dart';
 import 'package:important/widgets/todo_list.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // temp todos
     todos = [];
-    TempValues.generateNote(todos);
+    // TempValues.generateNote(todos);
 
     return MaterialApp(
       title: 'Important',

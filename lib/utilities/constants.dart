@@ -6,4 +6,6 @@ class Constants {
   static Color fundamentalColor = Colors.red[900];
   static Color usefulColor = Colors.yellow[700];
   static Color unimportantColor = Colors.blue[600];
+
+  static Function addNewTodo;
 }

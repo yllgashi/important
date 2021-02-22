@@ -5,7 +5,7 @@ import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
 import 'package:important/utilities/temp_values.dart';
 import 'package:important/widgets/importance_buttons.dart';
-import 'package:important/widgets/todo_onlongpress_dialog.dart';
+import 'package:important/widgets/dialogs/todo_onlongpress_dialog.dart';
 
 class TodoList extends StatefulWidget {
   final List<ToDoNote> _todos;
@@ -23,11 +23,13 @@ class _TodoList extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
+    Constants.addNewTodo = addTodo;
+
     return ListView.builder(
         itemCount: _todos.length,
         itemBuilder: (context, i) {
           final ToDoNote item = _todos[i];
-          if (i.isOdd) return Divider();
+          // if (i.isOdd) return Divider();
 
           return Dismissible(
             key: Key(item.caption),
@@ -69,22 +71,26 @@ class _TodoList extends State<TodoList> {
   }
 
   Widget _listItem(ToDoNote item) {
-    return ListTile(
-      title: Text(item.caption),
-      subtitle: Text(item.description),
-      trailing: ImportanceIcons(item),
-      onLongPress: () {
-        showDialog(
-          context: context,
-          builder: (context) => TodoOnlongpressDialog(item),
-        );
-      },
+    return Column(
+      children: [
+        ListTile(
+          title: Text(item.caption),
+          subtitle: Text(item.description),
+          trailing: ImportanceIcons(item),
+          onLongPress: () {
+            showDialog(
+              context: context,
+              builder: (context) => TodoOnlongpressDialog(item),
+            );
+          },
+        ),
+        Divider()
+      ],
     );
   }
 
   void addTodo(ToDoNote item) {
-    setState(() {
-      this._todos.add(item);
-    });
+    this._todos.add(item);
+    setState(() {});
   }
 }
