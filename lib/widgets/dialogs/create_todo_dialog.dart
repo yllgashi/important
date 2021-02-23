@@ -36,14 +36,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
         ),
         FlatButton(
           textColor: Constants.primaryColor,
-          onPressed: () {
-            ToDoNote temp = ToDoNote(this._todoTitleController.text,
-            this._todoDescriptionController.text, Priority.unimportant, DateTime.now());
-            // TODO qetu ke met qysh mja thirr metoden setState te klases ToDoList ne menyre qe te behet update ne ekran
-            // addTodo(); // kjo duhet me thirr setState() te klases _ToDoList
-            Constants.addNewTodo(temp);
-            Navigator.pop(context);
-          },
+          onPressed: addNewTodo,
           child: Text('Create'),
         ),
       ],
@@ -51,10 +44,14 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
   }
 
   Widget _todoForm() {
+    final node = FocusScope.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         TextField(
+          autofocus: true,
+          onEditingComplete: () => node.nextFocus(),
+          textInputAction: TextInputAction.next,
           controller: _todoTitleController,
           maxLength: 50,
           keyboardType: TextInputType.text,
@@ -71,6 +68,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
         TextField(
           controller: _todoDescriptionController,
           maxLength: 100,
+          onEditingComplete: addNewTodo,
           keyboardType: TextInputType.text,
           style: Theme.of(context).textTheme.subtitle1,
           decoration: InputDecoration(
@@ -84,5 +82,12 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
         )
       ],
     );
+  }
+
+  void addNewTodo() {
+            ToDoNote temp = ToDoNote(this._todoTitleController.text,
+            this._todoDescriptionController.text, Priority.unimportant, DateTime.now());
+            Constants.addNewTodo(temp);
+            Navigator.pop(context);
   }
 }

@@ -1,40 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 import 'package:important/models/ToDoNote.dart';
-import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
-import 'package:important/utilities/temp_values.dart';
 import 'package:important/widgets/importance_buttons.dart';
 import 'package:important/widgets/dialogs/todo_onlongpress_dialog.dart';
 
 class TodoList extends StatefulWidget {
   final List<ToDoNote> _todos;
+  final List<ToDoNote> _doneTodos;
 
-  TodoList(this._todos);
+  TodoList(this._todos, this._doneTodos);
 
   @override
-  _TodoList createState() => _TodoList(this._todos);
+  _TodoList createState() => _TodoList(this._todos, this._doneTodos);
 }
 
 class _TodoList extends State<TodoList> {
-  List<ToDoNote> _todos = [];
+  List<ToDoNote> _todos;
+  List<ToDoNote> _doneTodos;
 
-  _TodoList(this._todos);
+  _TodoList(this._todos, this._doneTodos);
 
   @override
   Widget build(BuildContext context) {
+    // storing setState() function outside _TodoList class
     Constants.addNewTodo = addTodo;
 
     return ListView.builder(
         itemCount: _todos.length,
         itemBuilder: (context, i) {
           final ToDoNote item = _todos[i];
-          // if (i.isOdd) return Divider();
 
           return Dismissible(
             key: Key(item.caption),
             onDismissed: (DismissDirection dir) {
-              setState(() => this._todos.removeAt(i));
+              if(dir == DismissDirection.startToEnd) {
+              setState(() {
+                this._todos.removeAt(i); // left (remove)
+              });
+              }
+              else if(dir == DismissDirection.endToStart) {
+                setState(() {
+                  this._doneTodos.add(this._todos[i]);
+                  // Call setState() function of Done screen
+                  this._todos.removeAt(i); // right (done)
+                });
+              }
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   content: Text(dir == DismissDirection.startToEnd
