@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:important/models/ToDoNote.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
-import 'package:important/widgets/todo_list.dart';
 
 class CreateTodoDialog extends StatefulWidget {
   final List<ToDoNote> _todos;

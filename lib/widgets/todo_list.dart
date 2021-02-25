@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:important/models/ToDoNote.dart';
 import 'package:important/utilities/constants.dart';
-import 'package:important/widgets/importance_buttons.dart';
-import 'package:important/widgets/dialogs/todo_onlongpress_dialog.dart';
+import 'package:important/widgets/list_item.dart';
 
 class TodoList extends StatefulWidget {
   final List<ToDoNote> _todos;
@@ -22,8 +21,8 @@ class _TodoList extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
-    // storing setState() function outside _TodoList class
-    Constants.addNewTodo = addTodo;
+    Constants.addNewTodo =
+        addTodo; // storing setState() function outside _TodoList class
 
     return ListView.builder(
         itemCount: _todos.length,
@@ -33,14 +32,13 @@ class _TodoList extends State<TodoList> {
           return Dismissible(
             key: Key(item.caption),
             onDismissed: (DismissDirection dir) {
-              if(dir == DismissDirection.startToEnd) {
-              setState(() {
-                this._todos.removeAt(i); // left (remove)
-              });
-              }
-              else if(dir == DismissDirection.endToStart) {
+              if (dir == DismissDirection.startToEnd) {
                 setState(() {
-                  this._doneTodos.add(this._todos[i]);
+                  this._todos.removeAt(i); // left (remove)
+                });
+              } else if (dir == DismissDirection.endToStart) {
+                setState(() {
+                  this._doneTodos.add(item);
                   // Call setState() function of Done screen
                   this._todos.removeAt(i); // right (done)
                 });
@@ -75,28 +73,9 @@ class _TodoList extends State<TodoList> {
               alignment: Alignment.centerRight,
               padding: EdgeInsets.only(right: 15),
             ),
-            child: _listItem(_todos[i]),
+            child: ListItem(_todos[i]),
           );
         });
-  }
-
-  Widget _listItem(ToDoNote item) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(item.caption),
-          subtitle: Text(item.description),
-          trailing: ImportanceIcons(item),
-          onLongPress: () {
-            showDialog(
-              context: context,
-              builder: (context) => TodoOnlongpressDialog(item),
-            );
-          },
-        ),
-        Divider()
-      ],
-    );
   }
 
   void addTodo(ToDoNote item) {

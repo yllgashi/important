@@ -84,7 +84,7 @@ class Search extends SearchDelegate {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                suggestionList[index].datetime.toString().substring(0, 16),
+                suggestionList[index].createdDatetime.toString().substring(0, 16),
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               if (suggestionList[index].priority == Priority.unimportant)

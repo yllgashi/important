@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:important/models/ToDoNote.dart';
-import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
 
 class TodoOnlongpressDialog extends StatelessWidget {
@@ -33,7 +32,7 @@ class TodoOnlongpressDialog extends StatelessWidget {
         ),
         Divider(height: 10),
         Text(
-          this._item.datetime.toString().substring(0, 16),
+          this._item.createdDatetime.toString().substring(0, 16),
           style: TextStyle(
             fontWeight: FontWeight.bold
           ),

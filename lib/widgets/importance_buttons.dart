@@ -1,4 +1,4 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:important/models/ToDoNote.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
