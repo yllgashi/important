@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
     return MaterialApp(
       title: 'Important',
       home: Scaffold(
-        appBar: DefaultAppBar().build(context),
+        appBar: DefaultAppBar(DataAccess.todos).build(context),
         body: Container(
           child: TodoList(DataAccess.todos, DataAccess.doneTodos),
         ),

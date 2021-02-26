@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:important/models/ToDoNote.dart';
 import 'package:important/models/data_access.dart';
 import 'package:important/utilities/constants.dart';
 import 'package:important/widgets/search.dart';
 
 class DefaultAppBar extends PreferredSize {
+  final List<ToDoNote> _list;
+
+  DefaultAppBar(this._list);
   
   @override
   AppBar build(BuildContext context) {
@@ -12,7 +16,7 @@ class DefaultAppBar extends PreferredSize {
       backgroundColor: Constants.primaryColor,
       automaticallyImplyLeading: false,
       actions: [
-        SearchButton(DataAccess.todos),
+        SearchButton(_list),
         IconButton(
           icon: Icon(Icons.assignment_outlined),
           onPressed: () => Navigator.of(context).pushNamed('/Home'),

@@ -49,8 +49,10 @@ class _TodoList extends State<TodoList> {
                       ? item.caption + ' removed'
                       : item.caption + ' is done'),
                   action: SnackBarAction(
-                    label: 'UNDO',
-                    onPressed: () {
+                    label: (dir == DismissDirection.startToEnd)
+                    ? 'UNDO'
+                    : null,
+                    onPressed:() {
                       setState(() => this._todos.insert(i, item));
                     },
                   ),

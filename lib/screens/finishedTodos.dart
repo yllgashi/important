@@ -7,7 +7,7 @@ class FinishedTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar().build(context),
+      appBar: DefaultAppBar(DataAccess.doneTodos).build(context),
         body: Container(
           child: TodoList(DataAccess.doneTodos, DataAccess.todos),
         ),
