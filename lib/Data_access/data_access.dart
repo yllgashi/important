@@ -1,4 +1,4 @@
-import 'ToDoNote.dart';
+import '../models/ToDoNote.dart';
 
 class DataAccess {
     static List<ToDoNote> todos = [];

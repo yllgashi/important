@@ -46,12 +46,12 @@ class _TodoList extends State<TodoList> {
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   content: Text(dir == DismissDirection.startToEnd
-                      ? item.caption + ' removed'
-                      : item.caption + ' is done'),
+                      ? '"' + item.caption + '" is removed'
+                      : '"' + item.caption + '" is moved'),
                   action: SnackBarAction(
                     label: (dir == DismissDirection.startToEnd)
                     ? 'UNDO'
-                    : null,
+                    : '',
                     onPressed:() {
                       setState(() => this._todos.insert(i, item));
                     },

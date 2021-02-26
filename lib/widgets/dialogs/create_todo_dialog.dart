@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:important/models/ToDoNote.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
@@ -19,22 +20,22 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
 
   _CreateTodoDialogState(this._todos);
 
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      scrollable: true,
       title: Text('New todo'),
       content: _todoForm(),
       actions: [
-        FlatButton(
-          textColor: Constants.primaryColor,
+        TextButton(
+          style: TextButton.styleFrom(primary: Constants.primaryColor),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text('Cancel'),
         ),
-        FlatButton(
-          textColor: Constants.primaryColor,
+        TextButton(
+          style: TextButton.styleFrom(primary: Constants.primaryColor),
           onPressed: addNewTodo,
           child: Text('Create'),
         ),
@@ -77,16 +78,18 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
           ),
-
         )
       ],
     );
   }
 
   void addNewTodo() {
-            ToDoNote temp = ToDoNote(this._todoTitleController.text,
-            this._todoDescriptionController.text, Priority.unimportant, DateTime.now());
-            Constants.addNewTodo(temp);
-            Navigator.pop(context);
+    ToDoNote temp = ToDoNote(
+        this._todoTitleController.text,
+        this._todoDescriptionController.text,
+        Priority.unimportant,
+        DateTime.now());
+    Constants.addNewTodo(temp);
+    Navigator.pop(context);
   }
 }
