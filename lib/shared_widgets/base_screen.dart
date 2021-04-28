@@ -46,7 +46,7 @@ class BaseScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        notchMargin: 10,
+        notchMargin: 3,
         color: Theme.of(context).primaryColor,
         child: Container(
           height: mediaQuery.size.height * 0.07,
