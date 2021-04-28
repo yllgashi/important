@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
+import 'package:important/modules/todos_overview/create_todo_dialog.dart';
 import 'package:important/utilities/constants.dart';
 
-import 'dialogs/create_todo_dialog.dart';
 
 class FloatingActionButtonAdd extends StatefulWidget {
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
   FloatingActionButtonAdd(this._todos);
 
   @override
@@ -13,7 +13,7 @@ class FloatingActionButtonAdd extends StatefulWidget {
 }
 
 class _FloatingActionButtonAddState extends State<FloatingActionButtonAdd> {
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
 
   _FloatingActionButtonAddState(this._todos);
 

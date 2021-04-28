@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
 
   class ImportanceIcons extends StatefulWidget {
-    final ToDoNote _item;
+    final Todo _item;
     ImportanceIcons(this._item);
 
     @override
@@ -12,7 +12,7 @@ import 'package:important/utilities/constants.dart';
   }
   
   class _ImportanceIconsState extends State<ImportanceIcons> {
-    final ToDoNote _item;
+    final Todo _item;
     _ImportanceIconsState(this._item);
 
     @override

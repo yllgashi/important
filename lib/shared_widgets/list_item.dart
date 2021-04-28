@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
-import 'dialogs/todo_onlongpress_dialog.dart';
+import 'package:important/models/todo.dart';
+import 'todo_onlongpress_dialog.dart';
 import 'importance_buttons.dart';
 
 class ListItem extends StatelessWidget {
-  final ToDoNote _item;
+  final Todo _item;
   ListItem(this._item);
 
   @override

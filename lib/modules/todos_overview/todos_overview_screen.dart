@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:important/Data_access/data_access.dart';
-import 'package:important/widgets/default_appbar.dart';
-import 'package:important/widgets/floating_action_button_add.dart';
-import 'package:important/widgets/todo_list.dart';
+import 'package:important/shared_widgets/default_appbar.dart';
+import 'package:important/shared_widgets/floating_action_button_add.dart';
+import 'package:important/shared_widgets/todo_list.dart';
 
-class Home extends StatelessWidget {
+class TodosOverviewScreen extends StatelessWidget {
+  static const routeName = '/todos-overview';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

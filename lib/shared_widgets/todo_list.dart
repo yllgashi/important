@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
+import 'package:important/shared_widgets/list_item.dart';
 import 'package:important/utilities/constants.dart';
-import 'package:important/widgets/list_item.dart';
 
 class TodoList extends StatefulWidget {
-  final List<ToDoNote> _todos;
-  final List<ToDoNote> _doneTodos;
+  final List<Todo> _todos;
+  final List<Todo> _doneTodos;
 
   TodoList(this._todos, this._doneTodos);
 
@@ -14,8 +14,8 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoList extends State<TodoList> {
-  List<ToDoNote> _todos;
-  List<ToDoNote> _doneTodos;
+  List<Todo> _todos;
+  List<Todo> _doneTodos;
 
   _TodoList(this._todos, this._doneTodos);
 
@@ -27,7 +27,7 @@ class _TodoList extends State<TodoList> {
     return ListView.builder(
         itemCount: _todos.length,
         itemBuilder: (context, i) {
-          final ToDoNote item = _todos[i];
+          final Todo item = _todos[i];
 
           return Dismissible(
             key: Key(item.caption),
@@ -80,7 +80,7 @@ class _TodoList extends State<TodoList> {
         });
   }
 
-  void addTodo(ToDoNote item) {
+  void addTodo(Todo item) {
     this._todos.add(item);
     setState(() {});
   }

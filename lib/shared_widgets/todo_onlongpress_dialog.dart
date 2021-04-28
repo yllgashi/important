@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
 import 'package:important/utilities/constants.dart';
 
 class TodoOnlongpressDialog extends StatelessWidget {
-  final ToDoNote _item;
+  final Todo _item;
   TodoOnlongpressDialog(this._item);
 
   @override

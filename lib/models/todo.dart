@@ -1,6 +1,7 @@
-import './priority.dart';
+import 'priority.dart';
 
-class ToDoNote {
+class Todo {
+  String todoId;
   String caption;
   String description;
   Priority priority;
@@ -8,5 +9,5 @@ class ToDoNote {
   DateTime finishedDatetime;
   bool done;
 
-  ToDoNote(this.caption, this.description, this.priority, this.createdDatetime);
+  Todo(this.caption, this.description, this.priority, this.createdDatetime);
 }

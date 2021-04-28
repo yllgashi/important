@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/utilities/constants.dart';
 
 class CreateTodoDialog extends StatefulWidget {
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
 
   CreateTodoDialog(this._todos);
 
@@ -14,7 +14,7 @@ class CreateTodoDialog extends StatefulWidget {
 }
 
 class _CreateTodoDialogState extends State<CreateTodoDialog> {
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
   final _todoTitleController = TextEditingController();
   final _todoDescriptionController = TextEditingController();
 
@@ -84,7 +84,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
   }
 
   void addNewTodo() {
-    ToDoNote temp = ToDoNote(
+    Todo temp = Todo(
         this._todoTitleController.text,
         this._todoDescriptionController.text,
         Priority.unimportant,

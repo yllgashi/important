@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
 import 'package:important/Data_access/data_access.dart';
+import 'package:important/shared_widgets/search.dart';
 import 'package:important/utilities/constants.dart';
-import 'package:important/widgets/search.dart';
 
 class DefaultAppBar extends PreferredSize {
-  final List<ToDoNote> _list;
+  final List<Todo> _list;
 
   DefaultAppBar(this._list);
   

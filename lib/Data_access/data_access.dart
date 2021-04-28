@@ -1,6 +1,6 @@
-import '../models/ToDoNote.dart';
+import '../models/todo.dart';
 
 class DataAccess {
-    static List<ToDoNote> todos = [];
-    static List<ToDoNote> doneTodos = [];
+    static List<Todo> todos = [];
+    static List<Todo> doneTodos = [];
 }
