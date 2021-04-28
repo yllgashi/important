@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import 'modules/auth/auth_screen.dart';
 import 'modules/auth/signup_screen.dart';
-import 'modules/finished_todos/finished_todos_screen.dart';
 import 'modules/todos_overview/todos_overview_screen.dart';
 
 void main() => runApp(MyApp());
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
         home: AuthScreen(),
         routes: {
           TodosOverviewScreen.routeName: (ctx) => TodosOverviewScreen(),
-          FinishedTodosScreen.routeName: (ctx) => FinishedTodosScreen(),
+          // FinishedTodosScreen.routeName: (ctx) => FinishedTodosScreen(),
           AuthScreen.routeName: (ctx) => AuthScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           SignUpScreen.routeName: (ctx) => SignUpScreen(),

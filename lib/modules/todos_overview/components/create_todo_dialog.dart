@@ -85,10 +85,11 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
 
   void addNewTodo() {
     Todo temp = Todo(
-        this._todoTitleController.text,
-        this._todoDescriptionController.text,
-        Priority.unimportant,
-        DateTime.now());
+      caption: this._todoTitleController.text,
+      description: this._todoDescriptionController.text,
+      priority: Priority.unimportant,
+      createdDatetime: DateTime.now(),
+    );
     Constants.addNewTodo(temp);
     Navigator.pop(context);
   }

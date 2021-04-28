@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:important/Data_access/data_access.dart';
+import 'package:important/providers/todo_provider.dart';
 import 'package:important/shared_widgets/search.dart';
+import 'package:provider/provider.dart';
 
 class BaseScreen extends StatelessWidget {
   final Widget child;
@@ -15,7 +16,9 @@ class BaseScreen extends StatelessWidget {
     return Scaffold(
       appBar: _appBar(context),
       drawer: _drawer(context),
-      body: SingleChildScrollView(
+      body: Container(
+        width: mediaQuery.size.width,
+        height: mediaQuery.size.height * 0.9,
         child: Column(
           children: [
             ClipPath(
@@ -28,7 +31,10 @@ class BaseScreen extends StatelessWidget {
                 width: mediaQuery.size.width,
               ),
             ),
-            child,
+            Container(
+              height: mediaQuery.size.height * 0.75,
+              child: child,
+            ),
           ],
         ),
       ),
@@ -51,12 +57,13 @@ class BaseScreen extends StatelessWidget {
   }
 
   PreferredSizeWidget _appBar(context) {
+    final _todoProvider = Provider.of<TodoProvider>(context, listen: false);
     return AppBar(
       title: Text('Important'),
       backgroundColor: Theme.of(context).primaryColor,
       // automaticallyImplyLeading: false,
       actions: [
-        SearchButton(DataAccess.todos),
+        SearchButton(_todoProvider.todos),
       ],
     );
   }

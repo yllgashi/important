@@ -4,11 +4,120 @@ import 'package:important/models/todo.dart';
 
 class TodoProvider with ChangeNotifier {
   List<Todo> _todos = [
-    Todo('Caption', 'Description', Priority.fundamental, DateTime.now()),
-    Todo('Caption', 'Description', Priority.fundamental, DateTime.now()),
-    Todo('Caption', 'Description', Priority.fundamental, DateTime.now()),
-    Todo('Caption', 'Description', Priority.fundamental, DateTime.now()),
-    Todo('Caption', 'Description', Priority.fundamental, DateTime.now()),
+    Todo(
+      caption: "Test1",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.fundamental,
+    ),
+    Todo(
+      caption: "Test2",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.unimportant,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
+    Todo(
+      caption: "Test1",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.fundamental,
+    ),
+    Todo(
+      caption: "Test2",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.unimportant,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
+    Todo(
+      caption: "Test1",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.fundamental,
+    ),
+    Todo(
+      caption: "Test2",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.unimportant,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
+    Todo(
+      caption: "Test1",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.fundamental,
+    ),
+    Todo(
+      caption: "Test2",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.unimportant,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
+    Todo(
+      caption: "Test1",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.fundamental,
+    ),
+    Todo(
+      caption: "Test2",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.unimportant,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
+    Todo(
+      caption: "Test1",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.fundamental,
+    ),
+    Todo(
+      caption: "Test2",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.unimportant,
+    ),
+    Todo(
+      caption: "Test3",
+      createdDatetime: DateTime.now(),
+      description: "Some notes about something",
+      priority: Priority.useful,
+    ),
   ];
 
   List<Todo> _finishedTodos = [];

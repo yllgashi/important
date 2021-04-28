@@ -9,5 +9,11 @@ class Todo {
   DateTime finishedDatetime;
   bool done;
 
-  Todo(this.caption, this.description, this.priority, this.createdDatetime);
+  Todo({
+    this.todoId,
+    this.caption,
+    this.description,
+    this.priority,
+    this.createdDatetime,
+  });
 }

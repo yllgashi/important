@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:important/models/todo.dart';
-import 'todo_onlongpress_dialog.dart';
-import 'importance_buttons.dart';
+import '../../../shared_widgets/todo_onlongpress_dialog.dart';
+import '../../../shared_widgets/importance_buttons.dart';
 
 class ListItem extends StatelessWidget {
   final Todo _item;

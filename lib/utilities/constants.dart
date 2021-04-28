@@ -18,6 +18,11 @@ class Constants {
   static Color usefulColor = Colors.yellow[700];
   static Color unimportantColor = Colors.blue[600];
 
+  // cards colors based on priority
+  static Color fundamentalCardColor = Colors.red[200];
+  static Color usefulCardColor = Colors.yellow[200];
+  static Color unimportantCardColor = Colors.blue[200];
+
   static Function addNewTodo;
 
   static ThemeData lightTheme(BuildContext context) {
