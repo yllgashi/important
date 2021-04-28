@@ -5,6 +5,7 @@ class Constants {
   static Color primaryColor = Colors.blueGrey[900];
   static Color accentLightColor = Colors.grey[400];
   static Color accentDarkColor = Colors.grey[300];
+  static Color yellowColor = Colors.yellow[800];
 
   // text colors
   static Color textLightColor = Colors.grey[850];
@@ -17,7 +18,7 @@ class Constants {
 
   static Function addNewTodo;
 
-  ThemeData lightTheme(BuildContext context) {
+  static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
       primaryColor: primaryColor,
       accentColor: accentLightColor,
@@ -33,7 +34,7 @@ class Constants {
     );
   }
 
-  ThemeData darkTheme(BuildContext context) {
+  static ThemeData darkTheme(BuildContext context) {
     return ThemeData(
       primaryColor: primaryColor,
       accentColor: accentLightColor,
@@ -43,8 +44,8 @@ class Constants {
       textTheme: TextTheme(
         bodyText1: TextStyle(color: textLightColor),
         bodyText2: TextStyle(color: textLightColor),
-        headline4: TextStyle(color: textLightColor, fontSize: 32),
-        headline1: TextStyle(color: textLightColor, fontSize: 80),
+        headline4: TextStyle(color: textLightColor, fontSize: 5),
+        headline1: TextStyle(color: textLightColor, fontSize: 32),
       ),
     );
   }
