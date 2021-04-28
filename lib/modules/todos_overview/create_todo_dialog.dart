@@ -28,14 +28,14 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
       content: _todoForm(),
       actions: [
         TextButton(
-          style: TextButton.styleFrom(primary: Constants.primaryColor),
+          style: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text('Cancel'),
         ),
         TextButton(
-          style: TextButton.styleFrom(primary: Constants.primaryColor),
+          style: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
           onPressed: addNewTodo,
           child: Text('Create'),
         ),

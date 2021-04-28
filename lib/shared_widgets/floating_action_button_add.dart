@@ -20,16 +20,16 @@ class _FloatingActionButtonAddState extends State<FloatingActionButtonAdd> {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      tooltip: 'Add',
-      child: Icon(Icons.add),
-      backgroundColor: Constants.primaryColor,
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (context) => CreateTodoDialog(this._todos),
-        );
-      },
-    );
+    // return FloatingActionButton(
+    //   tooltip: 'Add',
+    //   child: Icon(Icons.add),
+    //   backgroundColor: Theme.of(context).accentColor,
+    //   onPressed: () {
+    //     showDialog(
+    //       context: context,
+    //       builder: (context) => CreateTodoDialog(this._todos),
+    //     );
+    //   },
+    // );
   }
 }
