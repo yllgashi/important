@@ -18,6 +18,16 @@ class AuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(29),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 1, // changes position of shadow
+          ),
+        ],
+      ),
       margin: EdgeInsets.symmetric(vertical: 5),
       width: mediaQuery.size.width * 0.7,
       child: ClipRRect(

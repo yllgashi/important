@@ -13,18 +13,10 @@ class DefaultAppBar extends PreferredSize {
   AppBar build(BuildContext context) {
     return AppBar(
       title: Text('Important'),
-      backgroundColor: Constants.primaryColor,
-      automaticallyImplyLeading: false,
+      backgroundColor: Theme.of(context).primaryColor,
+      // automaticallyImplyLeading: false,
       actions: [
         SearchButton(_list),
-        IconButton(
-          icon: Icon(Icons.assignment_outlined),
-          onPressed: () => Navigator.of(context).pushNamed('/Home'),
-        ),
-        IconButton(
-          icon: Icon(Icons.assistant_photo_outlined),
-          onPressed: () => Navigator.of(context).pushNamed('/FinishedTodos'),
-        ),
       ],
     );
   }

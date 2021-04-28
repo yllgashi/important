@@ -13,7 +13,7 @@ class TodoOnlongpressDialog extends StatelessWidget {
       content: _contentOfDialog(),
       actions: [
         FlatButton(
-          textColor: Constants.primaryColor,
+          textColor: Theme.of(context).primaryColor,
           onPressed: () {
             Navigator.pop(context);
           },

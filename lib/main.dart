@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         title: 'Important',
         theme: Constants.lightTheme(context),
         darkTheme: Constants.darkTheme(context),
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
         home: AuthScreen(),
         routes: {
           TodosOverviewScreen.routeName: (ctx) => TodosOverviewScreen(),

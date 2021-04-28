@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class Constants {
   // primary colors
-  static Color primaryColor = Colors.blueGrey[900];
-  static Color accentLightColor = Colors.grey[400];
-  static Color accentDarkColor = Colors.grey[300];
+  static Color primaryLightColor = Colors.grey[600];
+  static Color primaryDarkColor = Colors.grey[700];
+  static Color accentLightColor = Colors.grey[100];
+  // static Color accentDarkColor = Color(0xFF404040);
+  static Color accentDarkColor = Colors.white;
   static Color yellowColor = Colors.yellow[800];
 
   // text colors
@@ -20,8 +22,9 @@ class Constants {
 
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
-      primaryColor: primaryColor,
+      primaryColor: primaryLightColor,
       accentColor: accentLightColor,
+      appBarTheme: _appBarTheme(),
       scaffoldBackgroundColor: Colors.white,
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(color: textLightColor),
@@ -35,18 +38,23 @@ class Constants {
   }
 
   static ThemeData darkTheme(BuildContext context) {
-    return ThemeData(
-      primaryColor: primaryColor,
-      accentColor: accentLightColor,
-      scaffoldBackgroundColor: Colors.white,
-      backgroundColor: Colors.white,
+    return ThemeData.dark().copyWith(
+      primaryColor: primaryDarkColor,
+      accentColor: accentDarkColor,
+      appBarTheme: _appBarTheme(),
+      scaffoldBackgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[850],
       iconTheme: IconThemeData(color: textLightColor),
       textTheme: TextTheme(
-        bodyText1: TextStyle(color: textLightColor),
-        bodyText2: TextStyle(color: textLightColor),
-        headline4: TextStyle(color: textLightColor, fontSize: 5),
-        headline1: TextStyle(color: textLightColor, fontSize: 32),
+        bodyText1: TextStyle(color: textDarkColor),
+        bodyText2: TextStyle(color: textDarkColor),
+        headline4: TextStyle(color: textDarkColor, fontSize: 5),
+        headline1: TextStyle(color: textDarkColor, fontSize: 32),
       ),
     );
+  }
+
+  static AppBarTheme _appBarTheme() {
+    return AppBarTheme(color: Colors.transparent, elevation: 0);
   }
 }
