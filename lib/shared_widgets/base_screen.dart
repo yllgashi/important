@@ -17,23 +17,26 @@ class BaseScreen extends StatelessWidget {
     return Scaffold(
       appBar: _appBar(context),
       drawer: _drawer(context),
-      body: Container(
-        width: mediaQuery.size.width,
-        height: mediaQuery.size.height * 0.9,
-        child: Column(
-          children: [
-            Container(
-              height: mediaQuery.size.height * 0.87,
-              child: child,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          width: mediaQuery.size.width,
+          height: mediaQuery.size.height * 0.9,
+          child: Column(
+            children: [
+              Container(
+                height: mediaQuery.size.height * 0.89,
+                child: child,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          tooltip: 'Add',
-          child: Icon(Icons.add),
-          backgroundColor: Theme.of(context).accentColor,
-          onPressed: floatingButtonFunction),
+        tooltip: 'Add',
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).accentColor,
+        onPressed: floatingButtonFunction,
+      ),
     );
   }
 
@@ -61,13 +64,13 @@ class BaseScreen extends StatelessWidget {
           ),
           ListTile(
             title: Text('Todos'),
-             onTap: () => Navigator.pushNamed(
-                    context, TodosOverviewScreen.routeName),
+            onTap: () =>
+                Navigator.pushNamed(context, TodosOverviewScreen.routeName),
           ),
           ListTile(
             title: Text('Finished todos'),
-                         onTap: () => Navigator.pushNamed(
-                    context, FinishedTodosScreen.routeName),
+            onTap: () =>
+                Navigator.pushNamed(context, FinishedTodosScreen.routeName),
           ),
           ListTile(
             title: Text('About me'),
