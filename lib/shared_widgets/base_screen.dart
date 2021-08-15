@@ -20,7 +20,6 @@ class BaseScreen extends StatelessWidget {
         height: mediaQuery.size.height * 0.9,
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.only(top: mediaQuery.size.height * 0.01)),
             Container(
               height: mediaQuery.size.height * 0.87,
               child: child,

@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:important/models/todo.dart';
 import 'package:important/models/priority.dart';
+import 'package:important/providers/todo_provider.dart';
 import 'package:important/utilities/constants.dart';
+import 'package:provider/provider.dart';
 
 class CreateTodoDialog extends StatefulWidget {
-  final List<Todo> _todos;
-
-  CreateTodoDialog(this._todos);
+  CreateTodoDialog();
 
   @override
-  _CreateTodoDialogState createState() => _CreateTodoDialogState(this._todos);
+  _CreateTodoDialogState createState() => _CreateTodoDialogState();
 }
 
 class _CreateTodoDialogState extends State<CreateTodoDialog> {
-  final List<Todo> _todos;
   final _todoTitleController = TextEditingController();
   final _todoDescriptionController = TextEditingController();
 
-  _CreateTodoDialogState(this._todos);
+  _CreateTodoDialogState();
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +83,16 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
   }
 
   void addNewTodo() {
+    final todoProvider = Provider.of<TodoProvider>(context, listen: false);
+
     Todo temp = Todo(
       caption: this._todoTitleController.text,
       description: this._todoDescriptionController.text,
       priority: Priority.unimportant,
       createdDatetime: DateTime.now(),
     );
-    Constants.addNewTodo(temp);
+    todoProvider.todos.add(temp);
+
     Navigator.pop(context);
   }
 }

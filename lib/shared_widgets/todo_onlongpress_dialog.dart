@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:important/models/todo.dart';
-import 'package:important/utilities/constants.dart';
 
 class TodoOnlongpressDialog extends StatelessWidget {
   final Todo _item;
@@ -24,20 +23,20 @@ class TodoOnlongpressDialog extends StatelessWidget {
   }
 
   Widget _contentOfDialog() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          this._item.description,
-        ),
-        Divider(height: 10),
-        Text(
-          this._item.createdDatetime.toString().substring(0, 16),
-          style: TextStyle(
-            fontWeight: FontWeight.bold
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            this._item.description,
           ),
-        )
-      ],
+          Divider(height: 10),
+          Text(
+            this._item.createdDatetime.toString().substring(0, 16),
+            style: TextStyle(fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 }

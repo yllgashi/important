@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:important/modules/todos_overview/components/create_todo_dialog.dart';
-import 'package:important/modules/todos_overview/components/todo_grid_list.dart';
 import 'package:important/providers/todo_provider.dart';
 import 'package:important/shared_widgets/base_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'components/todo_list.dart';
 
 class TodosOverviewScreen extends StatelessWidget {
   static const routeName = '/todos-overview';
@@ -16,12 +17,12 @@ class TodosOverviewScreen extends StatelessWidget {
       child: Container(
         width: mediaQuery.size.width * 0.95,
         height: mediaQuery.size.height * 8,
-        child: TodoGridList(),
+        child: TodoList(),
       ),
       floatingButtonFunction: () {
         showDialog(
           context: context,
-          builder: (context) => CreateTodoDialog(todoProvider.todos),
+          builder: (context) => CreateTodoDialog(),
         );
       },
     );
