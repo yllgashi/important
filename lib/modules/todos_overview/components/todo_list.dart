@@ -27,12 +27,13 @@ class _TodoList extends State<TodoList> {
             onDismissed: (DismissDirection dir) {
               if (dir == DismissDirection.startToEnd) {
                 setState(() {
-                  todoProvider.todos.removeAt(i); // left (remove)
+                  // left (remove)
+                  todoProvider.deleteTodo(item.todoId);
                 });
               } else if (dir == DismissDirection.endToStart) {
                 setState(() {
-                  todoProvider.finishedTodos.add(item);
-                  todoProvider.todos.removeAt(i); // right (done)
+                  // right
+                  todoProvider.finishTodo(item.todoId);
                 });
               }
               Scaffold.of(context).showSnackBar(

@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:important/models/todo.dart';
 import 'package:important/models/priority.dart';
 import 'package:important/providers/todo_provider.dart';
-import 'package:important/utilities/constants.dart';
 import 'package:provider/provider.dart';
 
 class CreateTodoDialog extends StatefulWidget {
@@ -91,7 +90,7 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
       priority: Priority.unimportant,
       createdDatetime: DateTime.now(),
     );
-    todoProvider.todos.add(temp);
+    todoProvider.addTodo(temp);
 
     Navigator.pop(context);
   }

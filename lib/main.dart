@@ -14,6 +14,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Important',
         theme: Constants.lightTheme(context),
         darkTheme: Constants.darkTheme(context),
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.system,
         home: AuthScreen(),
         routes: {
           TodosOverviewScreen.routeName: (ctx) => TodosOverviewScreen(),
