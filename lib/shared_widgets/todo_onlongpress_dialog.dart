@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
-import 'package:important/utilities/constants.dart';
+import 'package:important/models/todo.dart';
 
 class TodoOnlongpressDialog extends StatelessWidget {
-  final ToDoNote _item;
+  final Todo _item;
   TodoOnlongpressDialog(this._item);
 
   @override
@@ -13,7 +12,7 @@ class TodoOnlongpressDialog extends StatelessWidget {
       content: _contentOfDialog(),
       actions: [
         FlatButton(
-          textColor: Constants.primaryColor,
+          textColor: Theme.of(context).primaryColor,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -24,20 +23,20 @@ class TodoOnlongpressDialog extends StatelessWidget {
   }
 
   Widget _contentOfDialog() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          this._item.description,
-        ),
-        Divider(height: 10),
-        Text(
-          this._item.createdDatetime.toString().substring(0, 16),
-          style: TextStyle(
-            fontWeight: FontWeight.bold
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            this._item.description,
           ),
-        )
-      ],
+          Divider(height: 10),
+          Text(
+            this._item.createdDatetime.toString().substring(0, 16),
+            style: TextStyle(fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 }

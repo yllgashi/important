@@ -1,46 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
-import 'package:important/utilities/constants.dart';
-import 'package:important/widgets/list_item.dart';
+import 'package:important/models/todo.dart';
+import 'package:important/providers/todo_provider.dart';
+import 'package:provider/provider.dart';
+
+import 'list_item.dart';
 
 class TodoList extends StatefulWidget {
-  final List<ToDoNote> _todos;
-  final List<ToDoNote> _doneTodos;
-
-  TodoList(this._todos, this._doneTodos);
+  TodoList();
 
   @override
-  _TodoList createState() => _TodoList(this._todos, this._doneTodos);
+  _TodoList createState() => _TodoList();
 }
 
 class _TodoList extends State<TodoList> {
-  List<ToDoNote> _todos;
-  List<ToDoNote> _doneTodos;
-
-  _TodoList(this._todos, this._doneTodos);
-
   @override
   Widget build(BuildContext context) {
-    Constants.addNewTodo =
-        addTodo; // storing setState() function outside _TodoList class
+    final todoProvider = Provider.of<TodoProvider>(context, listen: true);
 
     return ListView.builder(
-        itemCount: _todos.length,
+        itemCount: todoProvider.todos.length,
         itemBuilder: (context, i) {
-          final ToDoNote item = _todos[i];
+          final Todo item = todoProvider.todos[i];
 
           return Dismissible(
             key: Key(item.caption),
             onDismissed: (DismissDirection dir) {
               if (dir == DismissDirection.startToEnd) {
                 setState(() {
-                  this._todos.removeAt(i); // left (remove)
+                  // left (remove)
+                  todoProvider.deleteTodo(item.todoId);
                 });
               } else if (dir == DismissDirection.endToStart) {
                 setState(() {
-                  this._doneTodos.add(item);
-                  // Call setState() function of Done screen
-                  this._todos.removeAt(i); // right (done)
+                  // right
+                  todoProvider.finishTodo(item.todoId);
                 });
               }
               Scaffold.of(context).showSnackBar(
@@ -49,11 +42,9 @@ class _TodoList extends State<TodoList> {
                       ? '"' + item.caption + '" is removed'
                       : '"' + item.caption + '" is moved'),
                   action: SnackBarAction(
-                    label: (dir == DismissDirection.startToEnd)
-                    ? 'UNDO'
-                    : '',
-                    onPressed:() {
-                      setState(() => this._todos.insert(i, item));
+                    label: (dir == DismissDirection.startToEnd) ? 'UNDO' : '',
+                    onPressed: () {
+                      setState(() => todoProvider.todos.insert(i, item));
                     },
                   ),
                 ),
@@ -75,13 +66,8 @@ class _TodoList extends State<TodoList> {
               alignment: Alignment.centerRight,
               padding: EdgeInsets.only(right: 15),
             ),
-            child: ListItem(_todos[i]),
+            child: ListItem(todoProvider.todos[i]),
           );
         });
-  }
-
-  void addTodo(ToDoNote item) {
-    this._todos.add(item);
-    setState(() {});
   }
 }

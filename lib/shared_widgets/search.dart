@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
 import 'package:important/models/priority.dart';
+import 'package:important/shared_widgets/todo_onlongpress_dialog.dart';
 import 'package:important/utilities/constants.dart';
-import 'package:important/widgets/dialogs/todo_onlongpress_dialog.dart';
 
 class SearchButton extends StatefulWidget {
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
   SearchButton(this._todos);
 
   @override
@@ -13,7 +13,7 @@ class SearchButton extends StatefulWidget {
 }
 
 class _SearchButtonState extends State<SearchButton> {
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
   _SearchButtonState(this._todos);
 
   @override
@@ -30,7 +30,7 @@ class _SearchButtonState extends State<SearchButton> {
 // Delegates
 class Search extends SearchDelegate {
   String _selectedResult;
-  final List<ToDoNote> _todos;
+  final List<Todo> _todos;
 
   Search(this._todos);
 
@@ -65,8 +65,8 @@ class Search extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<ToDoNote> recommended = [];
-    List<ToDoNote> suggestionList = [];
+    List<Todo> recommended = [];
+    List<Todo> suggestionList = [];
     query.isEmpty
         ? suggestionList = recommended
         : suggestionList.addAll(

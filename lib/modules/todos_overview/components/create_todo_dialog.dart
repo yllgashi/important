@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:important/models/ToDoNote.dart';
+import 'package:important/models/todo.dart';
 import 'package:important/models/priority.dart';
-import 'package:important/utilities/constants.dart';
+import 'package:important/providers/todo_provider.dart';
+import 'package:provider/provider.dart';
 
 class CreateTodoDialog extends StatefulWidget {
-  final List<ToDoNote> _todos;
-
-  CreateTodoDialog(this._todos);
+  CreateTodoDialog();
 
   @override
-  _CreateTodoDialogState createState() => _CreateTodoDialogState(this._todos);
+  _CreateTodoDialogState createState() => _CreateTodoDialogState();
 }
 
 class _CreateTodoDialogState extends State<CreateTodoDialog> {
-  final List<ToDoNote> _todos;
   final _todoTitleController = TextEditingController();
   final _todoDescriptionController = TextEditingController();
 
-  _CreateTodoDialogState(this._todos);
+  _CreateTodoDialogState();
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +26,14 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
       content: _todoForm(),
       actions: [
         TextButton(
-          style: TextButton.styleFrom(primary: Constants.primaryColor),
+          style: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text('Cancel'),
         ),
         TextButton(
-          style: TextButton.styleFrom(primary: Constants.primaryColor),
+          style: TextButton.styleFrom(primary: Theme.of(context).primaryColor),
           onPressed: addNewTodo,
           child: Text('Create'),
         ),
@@ -84,12 +82,16 @@ class _CreateTodoDialogState extends State<CreateTodoDialog> {
   }
 
   void addNewTodo() {
-    ToDoNote temp = ToDoNote(
-        this._todoTitleController.text,
-        this._todoDescriptionController.text,
-        Priority.unimportant,
-        DateTime.now());
-    Constants.addNewTodo(temp);
+    final todoProvider = Provider.of<TodoProvider>(context, listen: false);
+
+    Todo temp = Todo(
+      caption: this._todoTitleController.text,
+      description: this._todoDescriptionController.text,
+      priority: Priority.unimportant,
+      createdDatetime: DateTime.now(),
+    );
+    todoProvider.addTodo(temp);
+
     Navigator.pop(context);
   }
 }
