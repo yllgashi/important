@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:important/providers/todo_provider.dart';
 import 'package:important/shared_widgets/search.dart';
 import 'package:provider/provider.dart';
@@ -21,18 +20,9 @@ class BaseScreen extends StatelessWidget {
         height: mediaQuery.size.height * 0.9,
         child: Column(
           children: [
-            ClipPath(
-              clipper: WaveClipperOne(
-                flip: true,
-              ),
-              child: Container(
-                height: mediaQuery.size.height * 0.1,
-                color: Theme.of(context).primaryColor,
-                width: mediaQuery.size.width,
-              ),
-            ),
+            Padding(padding: EdgeInsets.only(top: mediaQuery.size.height * 0.01)),
             Container(
-              height: mediaQuery.size.height * 0.75,
+              height: mediaQuery.size.height * 0.87,
               child: child,
             ),
           ],
@@ -43,16 +33,6 @@ class BaseScreen extends StatelessWidget {
           child: Icon(Icons.add),
           backgroundColor: Theme.of(context).accentColor,
           onPressed: floatingButtonFunction),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 3,
-        color: Theme.of(context).primaryColor,
-        child: Container(
-          height: mediaQuery.size.height * 0.07,
-          width: mediaQuery.size.width,
-        ),
-      ),
     );
   }
 
