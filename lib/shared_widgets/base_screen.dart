@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:important/modules/finished_todos/finished_todos_screen.dart';
+import 'package:important/modules/todos_overview/todos_overview_screen.dart';
 import 'package:important/providers/todo_provider.dart';
 import 'package:important/shared_widgets/search.dart';
 import 'package:provider/provider.dart';
@@ -59,11 +61,13 @@ class BaseScreen extends StatelessWidget {
           ),
           ListTile(
             title: Text('Todos'),
-            onTap: () {},
+             onTap: () => Navigator.pushNamed(
+                    context, TodosOverviewScreen.routeName),
           ),
           ListTile(
             title: Text('Finished todos'),
-            onTap: () {},
+                         onTap: () => Navigator.pushNamed(
+                    context, FinishedTodosScreen.routeName),
           ),
           ListTile(
             title: Text('About me'),

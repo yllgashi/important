@@ -4,8 +4,8 @@ import 'package:important/shared_widgets/base_screen.dart';
 
 import 'components/todo_list.dart';
 
-class TodosOverviewScreen extends StatelessWidget {
-  static const routeName = '/todos-overview';
+class FinishedTodosScreen extends StatelessWidget {
+  static const routeName = '/finished-todos';
 
   @override
   Widget build(BuildContext context) {

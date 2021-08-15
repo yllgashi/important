@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'list_item.dart';
 
-
 class TodoList extends StatefulWidget {
   TodoList();
 
@@ -14,12 +13,9 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoList extends State<TodoList> {
-
-
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<TodoProvider>(context, listen: true);
-
 
     return ListView.builder(
         itemCount: todoProvider.todos.length,
@@ -35,8 +31,7 @@ class _TodoList extends State<TodoList> {
                 });
               } else if (dir == DismissDirection.endToStart) {
                 setState(() {
-                  todoProvider.todos.add(item);
-                  // Call setState() function of Done screen
+                  todoProvider.finishedTodos.add(item);
                   todoProvider.todos.removeAt(i); // right (done)
                 });
               }
@@ -46,10 +41,8 @@ class _TodoList extends State<TodoList> {
                       ? '"' + item.caption + '" is removed'
                       : '"' + item.caption + '" is moved'),
                   action: SnackBarAction(
-                    label: (dir == DismissDirection.startToEnd)
-                    ? 'UNDO'
-                    : '',
-                    onPressed:() {
+                    label: (dir == DismissDirection.startToEnd) ? 'UNDO' : '',
+                    onPressed: () {
                       setState(() => todoProvider.todos.insert(i, item));
                     },
                   ),

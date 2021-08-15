@@ -16,59 +16,15 @@ class _TodoList extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<TodoProvider>(context, listen: true);
-    List<Todo> doneTodos = todoProvider.todos.where((element) => element.done);
 
     return ListView.builder(
-        itemCount:
-            todoProvider.todos.where((element) => element.done == true).length,
+        itemCount: todoProvider.finishedTodos.length,
         itemBuilder: (context, i) {
-          final Todo item = doneTodos[i];
+          final Todo item = todoProvider.finishedTodos[i];
 
           return Dismissible(
             key: Key(item.caption),
-            onDismissed: (DismissDirection dir) {
-              if (dir == DismissDirection.startToEnd) {
-                setState(() {
-                  todoProvider.todos.removeAt(i); // left (remove)
-                });
-              } else if (dir == DismissDirection.endToStart) {
-                setState(() {
-                  todoProvider.todos.add(item);
-                  // Call setState() function of Done screen
-                  todoProvider.todos.removeAt(i); // right (done)
-                });
-              }
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(dir == DismissDirection.startToEnd
-                      ? '"' + item.caption + '" is removed'
-                      : '"' + item.caption + '" is moved'),
-                  action: SnackBarAction(
-                    label: (dir == DismissDirection.startToEnd) ? 'UNDO' : '',
-                    onPressed: () {
-                      setState(() => todoProvider.todos.insert(i, item));
-                    },
-                  ),
-                ),
-              );
-            },
-            background: Container(
-              color: Colors.red,
-              child: Icon(
-                Icons.delete,
-              ),
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 15),
-            ),
-            secondaryBackground: Container(
-              color: Colors.green,
-              child: Icon(
-                Icons.tour,
-              ),
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: 15),
-            ),
-            child: ListItem(todoProvider.todos[i]),
+            child: ListItem(todoProvider.finishedTodos[i]),
           );
         });
   }

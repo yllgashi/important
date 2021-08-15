@@ -3,6 +3,7 @@ import 'package:important/models/priority.dart';
 import 'package:important/models/todo.dart';
 
 class TodoProvider with ChangeNotifier {
+    List<Todo> _notFinishedTodos = [];
   List<Todo> _todos = [
     Todo(
       caption: "Test1",
